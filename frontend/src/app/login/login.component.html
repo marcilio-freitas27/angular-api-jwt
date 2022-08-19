@@ -1,0 +1,16 @@
+<div>
+  <h1>Login no sistema</h1>
+  <hr />
+  <form (ngSubmit)="submit()">
+    <span>
+      Login: <input type="text" name="usuario" [(ngModel)]="usuario" />
+    </span>
+    <br><br>
+    <span>
+      Password: <input types="password" name="senha" [(ngModel)]="senha" />
+    </span>
+    <p>
+      <button type="submit">Entrar</button>
+    </p>
+  </form>
+</div>
