@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-// import { ToastrService } from 'ngx-toastr';
 import { LoginService } from '../login.service';
+import { Toast } from 'bootstrap';
 
 @Component({
   selector: 'app-login',
@@ -12,35 +12,41 @@ export class LoginComponent implements OnInit {
   usuario = '';
   senha = '';
   mensagemErro = '';
+  mensagemSucesso = '';
+  result = false;
+  toastTrigger: HTMLElement;
+  toastLiveExample: HTMLElement;
   constructor(
     private loginService: LoginService,
     private route: Router,
-    // private toastr: ToastrService
   ) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.toastTrigger = document.getElementById('liveToastBtn')
+    this.toastLiveExample = document.getElementById('liveToast')
+    if (this.toastTrigger) {
+      this.toastTrigger.addEventListener('click', () => {
+        const toast = new Toast(this.toastLiveExample)
+        toast.show()
+      })
+    }
+  }
 
-  // showSuccess(mensagem: string) {
-  //   this.toastr.success(mensagem);
-  // }
-
-  // showError(mensagem: string) {
-  //   this.toastr.error(mensagem);
-  // }
-
-  submit(): void {
+  submit(): void{
     this.loginService
       .login(this.usuario, this.senha)
       .pipe()
       .subscribe({
         next: () => {
+          this.result = true;
           this.route.navigate(['/']);
+          this.mensagemSucesso = `Bem-vindo: ${this.usuario}, `;
+          console.log(this.result)
         },
         error: () => {
-          // this.showError(
-          //   `Usuario ou senha incorretos. Usuario: ${this.usuario}, Senha: ${this.senha}`
-          // );
-          console.log(`Usuario ou senha incorretos. Usuario: ${this.usuario}, Senha: ${this.senha}`);
+          this.result = false;
+          this.mensagemErro = `Usuario ou senha incorretos`;
+          console.log(this.result)
         },
       });
   }

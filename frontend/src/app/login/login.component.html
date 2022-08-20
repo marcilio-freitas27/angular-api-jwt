@@ -1,16 +1,59 @@
-<div>
-  <h1>Login no sistema</h1>
-  <hr />
-  <form (ngSubmit)="submit()">
-    <span>
-      Login: <input type="text" name="usuario" [(ngModel)]="usuario" />
-    </span>
-    <br><br>
-    <span>
-      Password: <input types="password" name="senha" [(ngModel)]="senha" />
-    </span>
-    <p>
-      <button type="submit">Entrar</button>
-    </p>
-  </form>
+<form class="m-5 p-5" (ngSubmit)="submit()">
+  <div class="mb-1 row">
+    <h1>Login</h1>
+    <label for="usuario" class="col-sm-2 col-form-label">User</label>
+    <div class="col-sm-10">
+      <input
+        type="text"
+        class="form-control"
+        id="usuario"
+        name="usuario"
+        [(ngModel)]="usuario"
+        placeholder="ex.: luiz"
+      />
+    </div>
+  </div>
+  <div class="mb-1 row">
+    <label for="senha" class="col-sm-2 col-form-label">Password</label>
+    <div class="col-sm-10">
+      <input
+        type="password"
+        class="form-control"
+        id="senha"
+        name="senha"
+        [(ngModel)]="senha"
+        placeholder="ex.: 123"
+      />
+    </div>
+  </div>
+  <div class="mb-1 row">
+    <div class="col-sm-10">
+      <button type="submit" id="liveToastBtn" class="btn btn-primary">
+        Entrar
+      </button>
+    </div>
+  </div>
+</form>
+
+<div [hidden]="result == true" class="toast-container position-fixed top-0 end-0 p-3">
+  <div
+    id="liveToast"
+    class="toast"
+    role="alert"
+    aria-live="assertive"
+    aria-atomic="true"
+  >
+    <div>
+      <div class="toast-body text-bg-danger">
+        {{ mensagemErro }}
+        <button
+          type="button"
+          class="btn-close text-white"
+          data-bs-dismiss="toast"
+          aria-label="Close"
+        ></button>
+      </div>
+    </div>
+  </div>
 </div>
+

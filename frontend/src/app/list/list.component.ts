@@ -29,4 +29,6 @@ export class ListComponent implements OnInit {
       this.router.navigate(['/login']);
     }
   }
+
+
 }

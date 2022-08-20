@@ -1,2 +1,11 @@
-<p>{{ dados | json }}</p>
-<button (click)="onLogoff()">Sair</button>
+<div class="card m-5">
+  <div class="card-header">
+    <h5 class="card-title">Usuários</h5>
+  </div>
+  <div *ngFor="let dado of dados" class="card-body">
+    <p>ID: {{ dado.id }}</p>
+    <p>Nome: {{ dado.nome }}</p>
+
+    <button id="toastbtn" (click)="onLogoff()" class="btn btn-primary">Sair</button>
+  </div>
+</div>
